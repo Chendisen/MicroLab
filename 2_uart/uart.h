@@ -8,7 +8,7 @@ typedef struct {
 	volatile uint32_t TASKS_STOPRX;
 	volatile uint32_t TASKS_STARTTX;
 	volatile uint32_t TASKS_STOPTX;
-	volatile uint32_t RESERVED[3];
+	volatile uint32_t RESERVED0[3];
 	volatile uint32_t TASKS_SUSPEND;
 	volatile uint32_t RESERVED1[56];
 	volatile uint32_t EVENTS_CTS;

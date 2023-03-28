@@ -38,6 +38,8 @@ typedef struct {
 void gpio_init();
 void gpio_lights_on();
 void gpio_lights_off();
+int ubit_button_press_a();
+int ubit_button_press_b();
 
 
 #endif
