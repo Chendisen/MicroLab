@@ -5,12 +5,12 @@
 void uart_init()
 {
     // Configure UART
-    GPIO0->PIN_CNF[6] = 1; // Configure RX as Input
-    GPIO1->PIN_CNF[8] = 0; // Configure TX as output
+    GPIO0->PIN_CNF[6] = 0; // Configure RX as Input
+    GPIO1->PIN_CNF[8] = 1; // Configure TX as output
 
     // Tell the pin positions to the uart.
-    UART->PSEL_RXD = 6;  
-    UART->PSEL_TXD = 40;         
+    UART->PSEL_TXD = 6;         
+    UART->PSEL_RXD = 40;  
 
 
     // Correct Baudrate
@@ -36,6 +36,7 @@ void uart_send(char letter)
         continue;
     }
     UART->TXD = letter;
+    UART->EVENTS_TXDRDY = 0;
     UART->TASKS_STOPTX = 1;
 }
 
