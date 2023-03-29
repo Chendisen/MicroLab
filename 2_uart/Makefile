@@ -1,5 +1,5 @@
 FAMILY := nrf52
-SOURCES := main.c gpio.c uart.c
+SOURCES := main.c uart.c gpio.c 
 
 BUILD_DIR := .build_system
 LINKER_SCRIPT := $(BUILD_DIR)/linker_script.ld
@@ -48,8 +48,3 @@ erase:
 clean:
 	$(QUIET)rm $(BUILD_DIR)/main.{elf,hex}
 	
-load:
-	@echo Loading main.hex to bootloader
-	pyocd load $(BUILD_DIR)/main.hex
-	@echo Resetting
-	pyocd reset
