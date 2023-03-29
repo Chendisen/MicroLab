@@ -1,5 +1,6 @@
-#include "uart.h"
 #include "gpio.h"
+#include "uart.h"
+
 
 int main(void)
 {
@@ -7,12 +8,15 @@ int main(void)
     uart_init();
     char letter;
     int sleep;
+
     while(1){
         if(ubit_button_press_a()){
+            gpio_lights_on();
             letter = 'A';
             uart_send(letter);
         }
         if(ubit_button_press_b()){
+            gpio_lights_off();
             letter = 'B';
             uart_send(letter);
         }

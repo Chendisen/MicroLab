@@ -12,13 +12,12 @@ void uart_init()
     UART->PSEL_TXD = 6;         
     UART->PSEL_RXD = 40;  
 
-
     // Correct Baudrate
     UART->BAUDRATE = 0x00275000;
 
     // Disconnect RTS and CTS
-    UART->PSEL_RTS = (1 << 31);
-    UART->PSEL_CTS = (1 << 31);
+    UART->PSEL_RTS |= (1 << 31);
+    UART->PSEL_CTS |= (1 << 31);
 
     // Turn on the UART Module
     UART->ENABLE = 4;
@@ -30,12 +29,13 @@ void uart_init()
 
 void uart_send(char letter)
 {
+    // UART->TASKS_STOPRX = 1;
     UART->TASKS_STARTTX = 1;
     
+    UART->TXD = letter;
     while(!UART->EVENTS_TXDRDY){
         continue;
     }
-    UART->TXD = letter;
     UART->EVENTS_TXDRDY = 0;
     UART->TASKS_STOPTX = 1;
 }
