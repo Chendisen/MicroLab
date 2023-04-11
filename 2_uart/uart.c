@@ -40,10 +40,10 @@ void uart_send(char letter)
 
 char uart_read()
 {
-    UART->TASKS_STARTRX = 1;
+    UART->TASKS_STARTRX = 0x1;
 
     if(UART->EVENTS_RXDRDY){
-        UART->EVENTS_RXDRDY = 0;
+        UART->EVENTS_RXDRDY = 0x0;
         char letter = (char)UART->RXD;
         return letter;
     }
